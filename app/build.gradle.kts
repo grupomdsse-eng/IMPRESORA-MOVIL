@@ -10,8 +10,8 @@ android {
         applicationId = "es.grupomds.mdsprint"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "2.0.1-client-simple"
+        versionCode = 4
+        versionName = "2.0.2-client-simple"
     }
 
     compileOptions {

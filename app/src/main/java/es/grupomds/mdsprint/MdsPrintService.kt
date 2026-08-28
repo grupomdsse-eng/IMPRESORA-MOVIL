@@ -12,7 +12,13 @@ class MdsPrintService : PrintService() {
     override fun onCreatePrinterDiscoverySession() = MdsPrinterDiscoverySession(this)
 
     override fun onPrintJobQueued(printJob: PrintJob) {
-        val printer = PrinterStore.fromLocalId(printJob.info.printerId.localId)
+        val printerId = printJob.info.printerId
+        if (printerId == null) {
+            printJob.fail("Android no indicó la impresora seleccionada")
+            return
+        }
+
+        val printer = PrinterStore.fromLocalId(printerId.localId)
         if (printer == null) {
             printJob.fail("No se pudo recuperar la configuración de la impresora")
             return

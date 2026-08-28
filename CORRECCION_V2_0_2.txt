@@ -1,0 +1,15 @@
+MDS OFICIO MEXICO - V2.0.2
+
+Corrección de compilación Kotlin:
+- MdsPrintService ya no accede directamente a printJob.info.printerId.localId.
+- Android declara printerId como nullable, por lo que ahora se valida primero.
+- Si Android no proporciona impresora, el trabajo falla de forma controlada con un mensaje claro.
+- Se evita usar !! para impedir cierres inesperados.
+
+Configuración de compilación:
+- compileSdk 36
+- targetSdk 36
+- build-tools 36.0.0
+- Java 17
+- Gradle 9.5.0
+- AGP 9.3.0
