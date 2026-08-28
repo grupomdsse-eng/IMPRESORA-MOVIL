@@ -46,8 +46,11 @@ Cuando el PDF entra por la aplicación, `PdfFilePrintAdapter` genera un document
 
 ## Requisitos de compilación
 
+> Corrección V2.0.1: se eliminó la dependencia de `platforms;android-37`. El workflow instala la plataforma estable `platforms;android-36` y Build Tools `36.0.0`.
+
 - Java 17
-- Android SDK 37
+- Android SDK 36 (Android 16, estable)
+- compileSdk 36
 - targetSdk 36
 - minSdk 26 (Android 8.0+)
 

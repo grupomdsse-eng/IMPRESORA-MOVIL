@@ -1,0 +1,23 @@
+MDS OFICIO MEXICO - CORRECCION V2.0.1
+======================================
+
+Se corrige el error de GitHub Actions:
+  Warning: Failed to find package 'platforms;android-37'
+
+Cambios realizados:
+- compileSdk: 37 -> 36
+- targetSdk: 36 (se mantiene)
+- SDK de GitHub Actions: platforms;android-36
+- Build Tools: 36.0.0
+- AGP: 9.3.0
+- Gradle: 9.5.0
+- Java: 17
+- versionCode: 3
+- versionName: 2.0.1-client-simple
+
+PARA USARLO:
+1. Sustituye en GitHub TODO el proyecto anterior por esta versión.
+2. Comprueba que también se haya subido la carpeta .github/workflows.
+3. En GitHub abre Actions > Compilar APK Android > Run workflow.
+4. Descarga el artefacto MDS-Oficio-Mexico-APK.
+5. Entrega al cliente únicamente MDS_Oficio_Mexico.apk.

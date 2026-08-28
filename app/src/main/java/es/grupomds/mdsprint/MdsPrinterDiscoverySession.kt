@@ -97,9 +97,8 @@ class MdsPrinterDiscoverySession(private val service: MdsPrintService) : Printer
         val localId = PrinterStore.toLocalId(config)
         seen[localId] = config
         val printerId = service.generatePrinterId(localId)
-        val displayName = if (config.name.startsWith("MDS · ")) config.name else "MDS · ${config.name}"
-        val info = PrinterInfo.Builder(printerId, displayName, PrinterInfo.STATUS_IDLE)
-            .setDescription("Oficio México 216 × 340 mm · IPP")
+        val info = PrinterInfo.Builder(printerId, config.name, PrinterInfo.STATUS_IDLE)
+            .setDescription("IPP · ${config.host}:${config.port}${config.normalizedPath}")
             .setCapabilities(buildCapabilities(printerId))
             .build()
         addPrinters(arrayListOf(info))
