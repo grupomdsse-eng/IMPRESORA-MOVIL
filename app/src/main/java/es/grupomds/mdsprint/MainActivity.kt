@@ -115,7 +115,7 @@ class MainActivity : Activity() {
         }, params(top = 18))
 
         root.addView(TextView(this).apply {
-            text = "Tamaño fijo recomendado: Oficio México · 216 × 340 mm"
+            text = "Oficio México · 216 × 340 mm · Motor IPP/PWG automático"
             textSize = 13f
             gravity = Gravity.CENTER
             setTextColor(Color.GRAY)

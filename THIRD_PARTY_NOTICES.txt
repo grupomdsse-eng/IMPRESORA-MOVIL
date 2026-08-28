@@ -1,0 +1,7 @@
+PWG Raster implementation notes
+===============================
+The PWG Raster encoder in this project is an independent Kotlin implementation based on the
+PWG Raster/CUPS raster format specifications and public CUPS raster header definitions.
+Compatibility behavior and raster packing were cross-checked against public driverless-printing
+implementations, including CardSat (MIT License, https://github.com/prstoetzer/CardSat).
+No CardSat binary dependency is included in this application.

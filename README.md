@@ -57,3 +57,10 @@ Cuando el PDF entra por la aplicación, `PdfFilePrintAdapter` genera un document
 ## Nota de Android
 
 Android no permite que una app active silenciosamente su propio servicio de impresión. El usuario debe activar **MDS Print** una vez en los ajustes del sistema. Después, la app puede comprobar su estado en Android 13+ y guiar al usuario.
+
+## V2.1.0 - motor IPP/PWG
+
+Esta versión corrige el error de impresión que podía producirse al enviar siempre PDF directamente.
+El motor consulta `document-format-supported`, intenta PDF cuando está disponible y usa
+`image/pwg-raster` automáticamente como formato driverless alternativo. También registra un
+diagnóstico de la última impresión en Configuración avanzada.

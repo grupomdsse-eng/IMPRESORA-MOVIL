@@ -20,6 +20,7 @@ class AdvancedActivity : Activity() {
     private val paperStore by lazy { PaperStore(this) }
     private lateinit var printerList: LinearLayout
     private lateinit var paperList: LinearLayout
+    private lateinit var diagnosticText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,12 @@ class AdvancedActivity : Activity() {
         setContentView(buildUi())
         refreshPrinters()
         refreshPapers()
+        refreshDiagnostic()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::diagnosticText.isInitialized) refreshDiagnostic()
     }
 
     private fun buildUi(): View {
@@ -111,8 +118,23 @@ class AdvancedActivity : Activity() {
         paperList = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         root.addView(paperList)
 
-        section(root, "3 · Cómo usarlo")
-        root.addView(text("1. Activa MDS Print Service en Ajustes de impresión.\n2. Abre un PDF en Chrome, Drive, Adobe, Gmail, etc.\n3. Pulsa Imprimir.\n4. Selecciona una impresora gestionada por MDS Print.\n5. En Papel selecciona “Oficio México 216 × 340 mm”.\n6. Imprime."))
+        section(root, "3 · Diagnóstico de la última impresión")
+        root.addView(text("Esta información está pensada para soporte técnico. El cliente no necesita interpretarla."))
+        diagnosticText = TextView(this).apply {
+            textSize = 13f
+            setTextColor(Color.DKGRAY)
+            setTextIsSelectable(true)
+            setPadding(dp(12), dp(12), dp(12), dp(12))
+            setBackgroundColor(Color.rgb(245, 247, 250))
+        }
+        root.addView(diagnosticText, params(top = 6))
+        root.addView(Button(this).apply {
+            text = "ACTUALIZAR DIAGNÓSTICO"
+            setOnClickListener { refreshDiagnostic() }
+        })
+
+        section(root, "4 · Cómo usarlo")
+        root.addView(text("1. Activa MDS Print Service en Ajustes de impresión.\n2. Abre o comparte el PDF con MDS Oficio México.\n3. Selecciona la impresora MDS.\n4. Oficio México 216 × 340 mm ya se envía como tamaño personalizado.\n5. Imprime."))
 
         return scroll
     }
@@ -141,9 +163,17 @@ class AdvancedActivity : Activity() {
                     text = "PROBANDO…"
                     Thread {
                         val result = IppClient.testPrinter(p)
+                        DiagnosticsStore(this@AdvancedActivity).save(buildString {
+                            append("PRUEBA DE IMPRESORA: ${p.name}\n")
+                            append("DESTINO: ${p.host}:${p.port}${p.normalizedPath}\n")
+                            append("RESULTADO: ${if (result.ok) "CORRECTO" else "ERROR"}\n")
+                            append("MENSAJE: ${result.message}\n")
+                            if (result.detail.isNotBlank()) append("\n${result.detail}")
+                        })
                         runOnUiThread {
                             isEnabled = true
                             text = "PROBAR"
+                            refreshDiagnostic()
                             toast(if (result.ok) "Conexión IPP correcta" else "Error: ${result.message}")
                         }
                     }.start()
@@ -179,6 +209,11 @@ class AdvancedActivity : Activity() {
             }
             paperList.addView(row)
         }
+    }
+
+    private fun refreshDiagnostic() {
+        if (!::diagnosticText.isInitialized) return
+        diagnosticText.text = DiagnosticsStore(this).last()
     }
 
     private fun section(root: LinearLayout, title: String) {

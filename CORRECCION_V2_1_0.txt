@@ -1,0 +1,29 @@
+MDS OFICIO MÉXICO V2.1.0 - MOTOR DE IMPRESIÓN CORREGIDO
+=========================================================
+
+PROBLEMA DE LA V2.0.2
+---------------------
+La versión anterior enviaba siempre el documento como application/pdf por IPP.
+Que una impresora sea IPP no significa que acepte PDF directamente.
+Muchas impresoras driverless utilizan PWG Raster como formato interoperable.
+Por eso Android podía encontrar la impresora y, al imprimir, mostrar simplemente
+"Error de impresión".
+
+QUÉ CAMBIA EN V2.1.0
+--------------------
+1. Consulta las capacidades reales de la impresora mediante Get-Printer-Attributes.
+2. Lee document-format-supported, versiones IPP y resoluciones PWG disponibles.
+3. Si la impresora acepta PDF, intenta PDF primero.
+4. Si PDF no está disponible o es rechazado, convierte automáticamente el documento
+   a image/pwg-raster y reintenta.
+5. El PWG Raster se genera en Android sin servidores externos.
+6. Mantiene Oficio México 216 x 340 mm en media-col (21600 x 34000 centésimas de mm).
+7. Usa IPP/1.1 para mejorar compatibilidad con impresoras antiguas.
+8. Guarda un diagnóstico legible en Configuración avanzada > Diagnóstico de la última impresión.
+9. Las impresoras descubiertas se guardan automáticamente para que soporte pueda ver IP/puerto/ruta.
+
+SI SIGUE FALLANDO
+-----------------
+Abre MDS Oficio México > CONFIGURACIÓN AVANZADA · SOLO SOPORTE y copia el apartado
+"Diagnóstico de la última impresión". Ahí se indicará si falla por IP/puerto/ruta,
+formato, papel personalizado o por estado de la propia impresora.

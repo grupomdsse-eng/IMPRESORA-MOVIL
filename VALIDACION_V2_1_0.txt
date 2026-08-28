@@ -1,0 +1,13 @@
+VALIDACIÓN V2.1.0
+=================
+
+- XML del proyecto: validado.
+- Workflow YAML: validado.
+- Núcleo IppClient.kt: comprobado con compilador Kotlin mediante stubs de Android.
+- Núcleo PwgRasterEncoder.kt: comprobado con compilador Kotlin mediante stubs de Android.
+- MdsPrintService.kt: comprobado con compilador Kotlin mediante stubs de Android.
+- Cabecera PWG Raster: control interno obligatorio de 1796 bytes.
+- Tamaño Oficio México: se mantiene como 216 x 340 mm / media-col 21600 x 34000.
+
+La validación física final depende de las capacidades que anuncie y acepte la impresora real.
+Por eso la V2.1.0 guarda el diagnóstico IPP de cada intento.
