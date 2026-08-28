@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MDS Oficio México</string>
+    <string name="print_service_label">MDS Print</string>
+    <string name="print_service_description">Impresión sencilla en Oficio México 216 × 340 mm</string>
+</resources>

@@ -1,0 +1,27 @@
+MDS OFICIO MÉXICO - INSTALACIÓN
+================================
+
+SOLO HAY QUE CONFIGURARLO UNA VEZ:
+
+1. Instala MDS_Oficio_Mexico.apk.
+2. Abre la aplicación “MDS Oficio México”.
+3. Pulsa “ACTIVAR MDS PRINT”.
+4. Android abrirá los ajustes de impresión. Activa “MDS Print”.
+5. Vuelve atrás. Debe aparecer “Listo para imprimir”.
+
+PARA IMPRIMIR:
+
+A) Desde la aplicación:
+   - Pulsa “SELECCIONAR PDF E IMPRIMIR”.
+   - Elige tu PDF.
+   - Selecciona la impresora de MDS Print.
+   - Pulsa Imprimir.
+
+B) Desde WhatsApp, correo, Drive o Archivos:
+   - Pulsa Abrir con / Compartir.
+   - Elige “MDS Oficio México”.
+   - Pulsa Imprimir.
+
+El tamaño OFICIO MÉXICO 216 x 340 mm se carga automáticamente.
+
+Si la impresora no aparece, contacta con soporte. No entres en Configuración avanzada salvo que soporte te lo indique.
